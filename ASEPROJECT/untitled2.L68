@@ -1,0 +1,60 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 2/15/2023 3:52:40 PM
+
+00001000                             1   ORG    $1000
+00001000                             2  START:                  
+00001000                             3      ; Set Previous Time
+00001000  103C 0008                  4      MOVE.B  #08, D0     ; CURRENT TIME IN MS WILL BE PUT IN D1.L
+00001004  4E4F                       5      TRAP    #15         ; TRAP
+00001006  2401                       6      MOVE.L D1, D2       ; D2 NOW HAS PREVIOUS TIME
+00001008                             7      
+00001008                             8  GAME_LOOP:
+00001008                             9      ; Get Current Time
+00001008  103C 0008                 10      MOVE.B  #08, D0     ; CURRENT TIME IN MS WILL BE PUT IN D1.L
+0000100C  4E4F                      11      TRAP    #15         ; TRAP
+0000100E  2601                      12      MOVE.L D1, D3       ; D3 NOW HAS CURRENT TIME
+00001010  2801                      13      MOVE.L D1, D4       ; D4 ALSO HAS CURRENT TIME
+00001012                            14      
+00001012                            15      ; Subtract Previous from Current
+00001012  9682                      16      SUB.L   D2, D3      ; D3 NOW HAS ELAPSED TIME
+00001014                            17      
+00001014  B6BC 00000064             18      CMP.L   #100, D3    ; IS ELAPSED TIME GREATER THAN 100 MS
+0000101A  6FEC                      19      BLE     GAME_LOOP   ; WE NEED TO DELAY A BIT LONGER
+0000101C  2404                      20      MOVE.L  D4, D2      ; SET PREVIOUS TIME TO CURRENT TIME
+0000101E  6000 0002                 21      BRA     FIXED_STEP  ; PRINT OUT ... COULD BE THE UPDATE PART OF YOUR GAME        
+00001022                            22  
+00001022                            23  FIXED_STEP:
+00001022  43F9 00001052             24      LEA     ENEMY_X, A1    ; LOAD MESSAGE
+00001028  103C 000D                 25      MOVE.B  #13, D0     ; DISPLAY CR LF
+0000102C  4E4F                      26      TRAP    #15         ; TRAP
+0000102E                            27      
+0000102E  43F9 00001056             28      LEA     ENEMY_Y, A1
+00001034  103C 000D                 29      MOVE.B  #13, D0
+00001038  4E4F                      30      TRAP    #15
+0000103A                            31      
+0000103A  60CC                      32      BRA     GAME_LOOP   ; LOOP GAME_LOOP
+0000103C                            33  
+0000103C  FFFF FFFF                 34      SIMHALT             ; halt simulator
+00001040                            35  
+00001040                            36  * Put variables and constants here
+00001040                            37  
+00001040= 46 69 78 65 64 20 ...     38  STEP    DC.B 'Fixed Step Simple', 0
+00001052                            39  ENEMY_X         DS.L    01  ; Reserve Space for Enemy X Position
+00001056                            40  ENEMY_Y         DS.L    01  ; Reserve Space for Enemy Y Position
+0000105A                            41  
+0000105A                            42      END    START        ; last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+ENEMY_X             1052
+ENEMY_Y             1056
+FIXED_STEP          1022
+GAME_LOOP           1008
+START               1000
+STEP                1040

@@ -1,0 +1,50 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 2/11/2023 11:34:21 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      :
+00000000                             3  * Written by :
+00000000                             4  * Date       :
+00000000                             5  * Description:
+00000000                             6  *-----------------------------------------------------------
+00001000                             7      ORG    $1000
+00001000                             8  START:                  ; first instruction of program
+00001000                             9  
+00001000                            10  ; Initialize the speed variable
+Line 11 ERROR: Invalid opcode
+00001000                            11  speed: .word 10
+00001000                            12  
+00001000                            13  ; ...
+00001000                            14  
+00001000                            15  ; In the player movement code
+00001000                            16  ; Decrease the speed
+Line 17 ERROR: Invalid syntax
+00001000                            17  sub.w #1, speed
+00001000                            18  
+00001000                            19  ; ...
+00001000                            20  
+00001000                            21  ; Use the speed variable to control the player's movement
+Line 22 ERROR: Invalid syntax
+00001000                            22  lea player_position, a0
+Line 23 ERROR: Invalid syntax
+00001000                            23  add.w speed, a0
+00001000                            24  
+00001000                            25  ; ...
+00001000                            26  
+00001000                            27  * Put program code here
+00001000                            28  
+00001000  FFFF FFFF                 29      SIMHALT             ; halt simulator
+00001004                            30  
+00001004                            31  * Put variables and constants here
+00001004                            32  
+00001004                            33      END    START        ; last line of source
+
+4 errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+START               1000

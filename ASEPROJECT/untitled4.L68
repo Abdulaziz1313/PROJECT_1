@@ -1,0 +1,87 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 2/11/2023 11:42:57 PM
+
+00000000                             1  
+00000000                             2  
+00000000                             3  
+00000000                             4  ; Set up the screen
+Line 5 ERROR: Undefined symbol
+00000000  41F9 004DBD16              5    lea screen, a0
+Line 6 ERROR: Undefined symbol
+00000006  4EB9 004DBD16              6    jsr init_screen
+0000000C                             7  
+0000000C                             8  ; Load the player sprite
+0000000C  41F9 0000005A              9     lea player_sprite, a0
+Line 10 ERROR: Undefined symbol
+00000012  4EB9 004DBD16             10     jsr load_sprite
+00000018                            11  
+00000018                            12  ; Initialize the player position
+00000018                            13  player_x:  
+Line 14 ERROR: Invalid syntax
+00000018                            14      move.word 100
+00000018                            15  player_y: 
+00000018                            16  
+Line 17 ERROR: Invalid syntax
+00000018                            17       move.word 300
+00000018                            18  
+00000018                            19  ; Main game loop
+00000018                            20  loop:
+00000018                            21      ; Clear the screen
+Line 22 ERROR: Undefined symbol
+00000018  4EB9 004DBD16             22      jsr clear_screen
+0000001E                            23  
+0000001E                            24      ; Update the player position
+0000001E  41F8 0018                 25      lea player_x, a0
+Line 26 ERROR: Undefined symbol
+00000022  4EB9 004DBD16             26      jsr update_player_position
+00000028                            27  
+00000028                            28      ; Draw the player
+00000028  41F8 0018                 29      lea player_x, a0
+0000002C  43F8 0018                 30      lea player_y, a1
+Line 31 ERROR: Undefined symbol
+00000030  4EB9 004DBD16             31      jsr draw_player
+00000036                            32  
+00000036                            33      ; Draw the obstacles
+00000036  41F9 0000005A             34      lea obstacles, a0
+Line 35 ERROR: Undefined symbol
+0000003C  4EB9 004DBD16             35      jsr draw_obstacles
+00000042                            36  
+00000042                            37      ; Check for collisions
+00000042  41F8 0018                 38      lea player_x, a0
+00000046  43F8 0018                 39      lea player_y, a1
+Line 40 ERROR: Undefined symbol
+0000004A  4EB9 004DBD16             40      jsr check_collisions
+00000050                            41  
+00000050                            42      ; Update the screen
+Line 43 ERROR: Undefined symbol
+00000050  4EB9 004DBD16             43      jsr update_screen
+00000056                            44  
+00000056                            45      ; Loop back to the start
+00000056  4EF8 0018                 46      jmp loop
+0000005A                            47  
+0000005A                            48  ; Player sprite data
+0000005A                            49  player_sprite:
+Line 50 ERROR: Invalid syntax
+0000005A                            50      move.byte ...
+0000005A                            51  
+0000005A                            52  ; Obstacle data
+0000005A                            53  obstacles:
+Line 54 ERROR: Invalid syntax
+0000005A                            54      move.word ...
+0000005A                            55  
+0000005A                            56  ; Routine to initialize the screen
+Line 57 WARNING: END directive missing, starting address not set
+
+13 errors detected
+1 warning generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+LOOP                18
+OBSTACLES           5A
+PLAYER_SPRITE       5A
+PLAYER_X            18
+PLAYER_Y            18

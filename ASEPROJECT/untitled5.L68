@@ -1,0 +1,104 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 2/11/2023 11:44:18 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      :
+00000000                             3  * Written by :
+00000000                             4  * Date       :
+00000000                             5  * Description:
+00000000                             6  *-----------------------------------------------------------
+00001000                             7      ORG    $1000
+00001000                             8  START:                  ; first instruction of program
+00001000                             9  
+00001000                            10  
+00001000                            11  
+00001000                            12  
+00001000                            13  ; Set up the screen
+Line 14 ERROR: Undefined symbol
+00001000  43F9 004DBD16             14    lea screen, A1
+Line 15 ERROR: Undefined symbol
+00001006  4EB9 004DBD16             15    jsr init_screen
+0000100C                            16  
+0000100C                            17  ; Load the player sprite
+0000100C  43F9 0000105A             18     lea player_sprite, a1
+Line 19 ERROR: Undefined symbol
+00001012  4EB9 004DBD16             19     jsr load_sprite
+00001018                            20  
+00001018                            21  ; Initialize the player position
+00001018                            22  player_x:  
+Line 23 ERROR: Invalid syntax
+00001018                            23      move.word 100
+00001018                            24  player_y: 
+00001018                            25  
+Line 26 ERROR: Invalid syntax
+00001018                            26       move.word 300
+00001018                            27  
+00001018                            28  ; Main game loop
+00001018                            29  loop:
+00001018                            30      ; Clear the screen
+Line 31 ERROR: Undefined symbol
+00001018  4EB9 004DBD16             31      jsr clear_screen
+0000101E                            32  
+0000101E                            33      ; Update the player position
+0000101E  43F8 1018                 34      lea player_x, a1
+Line 35 ERROR: Undefined symbol
+00001022  4EB9 004DBD16             35      jsr update_player_position
+00001028                            36  
+00001028                            37      ; Draw the player
+00001028  43F8 1018                 38      lea player_x, a1
+0000102C  43F8 1018                 39      lea player_y, a1
+Line 40 ERROR: Undefined symbol
+00001030  4EB9 004DBD16             40      jsr draw_player
+00001036                            41  
+00001036                            42      ; Draw the obstacles
+00001036  41F9 0000105A             43      lea obstacles, a0
+Line 44 ERROR: Undefined symbol
+0000103C  4EB9 004DBD16             44      jsr draw_obstacles
+00001042                            45  
+00001042                            46      ; Check for collisions
+00001042  41F8 1018                 47      lea player_x, a0
+00001046  43F8 1018                 48      lea player_y, a1
+Line 49 ERROR: Undefined symbol
+0000104A  4EB9 004DBD16             49      jsr check_collisions
+00001050                            50  
+00001050                            51      ; Update the screen
+Line 52 ERROR: Undefined symbol
+00001050  4EB9 004DBD16             52      jsr update_screen
+00001056                            53  
+00001056                            54      ; Loop back to the start
+00001056  4EF8 1018                 55      jmp loop
+0000105A                            56  
+0000105A                            57  ; Player sprite data
+0000105A                            58  player_sprite:
+Line 59 ERROR: Invalid syntax
+0000105A                            59      move.byte ...
+0000105A                            60  
+0000105A                            61  ; Obstacle data
+0000105A                            62  obstacles:
+Line 63 ERROR: Invalid syntax
+0000105A                            63      move.word ...
+0000105A                            64  
+0000105A                            65  ; Routine to initialize the screen
+0000105A                            66  
+0000105A                            67  * Put program code here
+0000105A                            68  
+0000105A  FFFF FFFF                 69      SIMHALT             ; halt simulator
+0000105E                            70  
+0000105E                            71  * Put variables and constants here
+0000105E                            72  
+0000105E                            73      END    START        ; last line of source
+
+13 errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+LOOP                1018
+OBSTACLES           105A
+PLAYER_SPRITE       105A
+PLAYER_X            1018
+PLAYER_Y            1018
+START               1000
